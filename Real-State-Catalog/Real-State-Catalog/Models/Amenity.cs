@@ -1,4 +1,6 @@
-﻿namespace Real_State_Catalog.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Real_State_Catalog.Models
 {
     public enum AmenityTypes
     {
@@ -16,9 +18,10 @@
 
     public class Amenity
     {
-        public Guid Id { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-        public Guid RoomId { get; set; }
+        public int RoomId { get; set; }
 
         public AmenityTypes AmenityType { get; set; }
 

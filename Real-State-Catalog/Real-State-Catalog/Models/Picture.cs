@@ -1,16 +1,18 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Real_State_Catalog.Models
 {
     public class Picture
     {
-        public Guid Id { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-        public Guid AccommodationId { get; set; }
+        public int AccommodationId { get; set; }
 
         public string FileName { get; set; }
 
-        public Picture(Guid accommodationId, string fileName)
+        public Picture(int accommodationId, string fileName)
         {
             this.AccommodationId = accommodationId;
             this.FileName = fileName;

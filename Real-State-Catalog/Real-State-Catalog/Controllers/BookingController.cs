@@ -64,7 +64,7 @@ namespace Real_State_Catalog.Controllers
         // POST: Booking/Details
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Details(Guid id, string returnAction)
+        public async Task<IActionResult> Details(int id, string returnAction)
         {
             var booking = await _context.Booking
                 .Include(b => b.Offer)

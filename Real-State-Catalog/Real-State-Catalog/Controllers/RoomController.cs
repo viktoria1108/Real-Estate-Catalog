@@ -16,7 +16,7 @@ namespace Real_State_Catalog.Controllers
 
         // GET: Accommodation/ManageRooms
         [Route("Accommodation/ManageRooms/{id?}")]
-        public async Task<IActionResult> ManageRooms(Guid? id)
+        public async Task<IActionResult> ManageRooms(int? id)
         {
             if (id == null)
             {
@@ -48,7 +48,7 @@ namespace Real_State_Catalog.Controllers
         [HttpPost]
         [Route("Accommodation/ManageRooms/{id?}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ManageRooms(Guid? accommodationId, string roomType,
+        public async Task<IActionResult> ManageRooms(int? accommodationId, string roomType,
             string singleBedNumber, string doubleBedNumber, string tv, string closet,
             string bathtub, string shower, string washingMachine,
             string oven, string freezer, string coffeeMaker)
@@ -76,7 +76,7 @@ namespace Real_State_Catalog.Controllers
                         AddAmenityIfChecked(amenities, tv, "TV");
                         AddAmenityIfChecked(amenities, closet, "Closet");
 
-                        await SaveRoom((Guid)accommodationId, roomType, amenities);
+                        await SaveRoom((int)accommodationId, roomType, amenities);
                     }
 
                     break;
@@ -93,7 +93,7 @@ namespace Real_State_Catalog.Controllers
                         AddAmenityIfChecked(amenities, shower, "Shower");
                         AddAmenityIfChecked(amenities, washingMachine, "WashingMachine");
 
-                        await SaveRoom((Guid)accommodationId, roomType, amenities);
+                        await SaveRoom((int)accommodationId, roomType, amenities);
                     }
 
                     break;
@@ -110,7 +110,7 @@ namespace Real_State_Catalog.Controllers
                         AddAmenityIfChecked(amenities, freezer, "Freezer");
                         AddAmenityIfChecked(amenities, coffeeMaker, "CoffeeMaker");
 
-                        await SaveRoom((Guid)accommodationId, roomType, amenities);
+                        await SaveRoom((int)accommodationId, roomType, amenities);
                     }
 
                     break;
@@ -119,7 +119,7 @@ namespace Real_State_Catalog.Controllers
             return RedirectToAction("ManageRooms", new { id = accommodationId });
         }
 
-        private async Task SaveRoom(Guid accommodationId, string roomType, List<Amenity> amenities)
+        private async Task SaveRoom(int accommodationId, string roomType, List<Amenity> amenities)
         {
             Room room = new()
             {
@@ -153,7 +153,7 @@ namespace Real_State_Catalog.Controllers
 
         // GET: Accommodation/DeletePicture
         [Route("Accommodation/DeleteRoom/{id}")]
-        public async Task<IActionResult> DeleteRoom(Guid id, Guid accommodationId)
+        public async Task<IActionResult> DeleteRoom(int id, int accommodationId)
         {
             // перевірка, чи є у користувача зображення
             var room = await _context.Rooms.FindAsync(id);

@@ -18,8 +18,8 @@ namespace Real_State_Catalog.Controllers
         }
 
         // GET: Accommodation/ManageAmenities
-        [Route("ManageAmenities/{roomId:guid?}")]
-        public async Task<IActionResult> ManageAmenities(Guid? roomId)
+        [Route("ManageAmenities/{roomId:int?}")]
+        public async Task<IActionResult> ManageAmenities(int? roomId)
         {
             if (roomId == null) { return NotFound(); }
 
@@ -44,9 +44,9 @@ namespace Real_State_Catalog.Controllers
 
         // POST: Accommodation/AddAmenity
         [HttpPost]
-        [Route("AddAmenity/{roomId:guid}")]
+        [Route("AddAmenity/{roomId:int}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddAmenity(Guid roomId, string amenityType)
+        public async Task<IActionResult> AddAmenity(int roomId, string amenityType)
         {
             var room = await _context.Rooms
                 .Include(r => r.Amenities)
@@ -73,9 +73,9 @@ namespace Real_State_Catalog.Controllers
 
         // POST: Accommodation/DeleteAmenity
         [HttpPost]
-        [Route("DeleteAmenity/{amenityId:guid}")]
+        [Route("DeleteAmenity/{amenityId:int}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteAmenity(Guid amenityId, Guid roomId)
+        public async Task<IActionResult> DeleteAmenity(int amenityId, int roomId)
         {
             var nbAmenities = await _context.Amenity.CountAsync(r => r.RoomId == roomId);
 

@@ -8,7 +8,8 @@ namespace Real_State_Catalog.Models
 {
     public class Accommodation
     {
-        public Guid Id { get; set; }
+        [Key]
+        public int Id { get; set; }
         public string UserId { get; set; }
         [Display(Name = "User")]
         [JsonIgnore]

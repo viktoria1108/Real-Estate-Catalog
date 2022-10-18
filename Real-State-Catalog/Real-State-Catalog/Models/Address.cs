@@ -10,8 +10,9 @@ namespace Real_State_Catalog.Models
 {
     public class Address
     {
+		[Key]
 		[ForeignKey("Accommodation")]
-		public Guid Id { get; set; }
+		public int Id { get; set; }
 
 		[JsonIgnore] 
 		public virtual Accommodation Accommodation { get; set; }

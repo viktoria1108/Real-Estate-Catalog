@@ -42,7 +42,7 @@ namespace Real_State_Catalog.Controllers
             }
 
             // GET: Accommodation/Details
-            public async Task<IActionResult> Details(Guid? id)
+            public async Task<IActionResult> Details(int? id)
             {
                 if (id == null)
                 {
@@ -94,7 +94,7 @@ namespace Real_State_Catalog.Controllers
             }
 
             // GET: Accommodation/Edit
-            public async Task<IActionResult> Edit(Guid? id)
+            public async Task<IActionResult> Edit(int? id)
             {
                 if (id == null)
                 {
@@ -118,7 +118,7 @@ namespace Real_State_Catalog.Controllers
             // POST: Accommodation/Edit
             [HttpPost]
             [ValidateAntiForgeryToken]
-            public async Task<IActionResult> Edit(Guid id,
+            public async Task<IActionResult> Edit(int id,
                 [Bind("Id, Name, Type, MaxTraveler, Description")] Accommodation accommodation,
                 [Bind("Id, StreetAndNumber, Complement, City, PostalCode, Country")] Address address,
                 [Bind("Id, ArrivalHour, DepartureHour, PetAllowed, PartyAllowed, SmokeAllowed")] HouseRules houseRules)
@@ -151,7 +151,7 @@ namespace Real_State_Catalog.Controllers
             }
 
             // GET: Accommodation/Delete
-            public async Task<IActionResult> Delete(Guid? id)
+            public async Task<IActionResult> Delete(int? id)
             {
                 if (id == null)
                 {
@@ -171,7 +171,7 @@ namespace Real_State_Catalog.Controllers
             // POST: Accommodation/Delete
             [HttpPost, ActionName("Delete")]
             [ValidateAntiForgeryToken]
-            public async Task<IActionResult> DeleteConfirmed(Guid id)
+            public async Task<IActionResult> DeleteConfirmed(int id)
             {
                 var accommodation = await _context.Accommodations.FindAsync(id);
                 _context.Accommodations.Remove(accommodation);
@@ -179,7 +179,7 @@ namespace Real_State_Catalog.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            private bool AccommodationExists(Guid id)
+            private bool AccommodationExists(int id)
             {
                 return _context.Accommodations.Any(e => e.Id == id);
             }

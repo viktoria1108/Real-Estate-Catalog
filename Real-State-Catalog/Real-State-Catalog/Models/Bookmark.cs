@@ -1,12 +1,17 @@
-﻿namespace Real_State_Catalog.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Real_State_Catalog.Models
 {
     public class Bookmark
     {
-        public Guid Id { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-        public string UserId { get; set; }
+        public string? UserId { get; set; }
 
-        public Guid OfferId { get; set; }
+        public int? OfferId { get; set; }
+        [ForeignKey("OfferId")]
         public virtual Offer Offer { get; set; }
     }
 }
