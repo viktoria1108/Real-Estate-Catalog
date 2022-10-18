@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 
 namespace Real_State_Catalog.Models
@@ -9,6 +10,13 @@ namespace Real_State_Catalog.Models
     {
         public Guid Id { get; set; }
         public string UserId { get; set; }
+        [Display(Name = "Utilisateur")]
+        [JsonIgnore]
+        public virtual User User { get; set; }
+
+        [Display(Name = "Adress")]
+        public virtual Address Address { get; set; }
+
         [Required(ErrorMessage = "You must enter a name for your accommodation")]
         [Display(Name = "Name")]
         public string Name { get; set; }
