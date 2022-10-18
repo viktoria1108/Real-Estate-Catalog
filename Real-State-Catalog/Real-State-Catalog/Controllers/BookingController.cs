@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Real_State_Catalog.Models;
+using Real_State_Catalog.Data;
 
 namespace Real_State_Catalog.Controllers
 {

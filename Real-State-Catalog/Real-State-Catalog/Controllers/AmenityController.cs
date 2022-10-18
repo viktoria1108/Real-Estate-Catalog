@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Real_State_Catalog.Models;
+using Real_State_Catalog.Data;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
+using Microsoft.EntityFrameworkCore;
 
 namespace Real_State_Catalog.Controllers
 {

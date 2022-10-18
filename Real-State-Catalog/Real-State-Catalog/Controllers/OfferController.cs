@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Real_State_Catalog.Models;
+using Real_State_Catalog.Data;
 
 namespace Real_State_Catalog.Controllers
 {
