@@ -2,13 +2,17 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Real_State_Catalog.Data;
 using Real_State_Catalog.Models;
 
 namespace Real_State_Catalog.Controllers
 {
     [Authorize(Roles = "Admin,Host")]
     public class AccommodationController : Controller
-    {
+    {     
+            private readonly AppContextDB _context;
+            private readonly UserManager<User> _userManager;
+            private readonly IWebHostEnvironment _environment;
 
             public AccommodationController(AppContextDB context, UserManager<User> userManager, IWebHostEnvironment environment)
             {
