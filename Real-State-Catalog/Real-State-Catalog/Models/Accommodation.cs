@@ -10,12 +10,24 @@ namespace Real_State_Catalog.Models
     {
         public Guid Id { get; set; }
         public string UserId { get; set; }
-        [Display(Name = "Utilisateur")]
+        [Display(Name = "User")]
         [JsonIgnore]
         public virtual User User { get; set; }
+        [Display(Name = "Offers")]
+        [JsonIgnore]
+        public virtual List<Offer> Offers { get; set; }
 
-        [Display(Name = "Adress")]
+        [Display(Name = "Address")]
         public virtual Address Address { get; set; }
+
+        [Display(Name = "House Rules")]
+        public virtual HouseRules HouseRules { get; set; }
+
+        [Display(Name = "Photos")]
+        public virtual List<Picture> Pictures { get; set; }
+
+        [Display(Name = "Rooms")]
+        public virtual List<Room> Rooms { get; set; }
 
         [Required(ErrorMessage = "You must enter a name for your accommodation")]
         [Display(Name = "Name")]
