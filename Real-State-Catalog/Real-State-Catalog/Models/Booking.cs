@@ -42,7 +42,7 @@ namespace Real_State_Catalog.Models
         [DataType(DataType.Time)]
         public TimeSpan DepartureTime { get; set; }
 
-        [Display(Name = "Number of travelers)")]
+        [Display(Name = "Number of travelers")]
         public int NbPerson { get; set; }
 
         [Display(Name = "Total Price")]
