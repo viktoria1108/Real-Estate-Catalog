@@ -1,11 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using Real_State_Catalog.Models
-
-@model IEnumerable<Real_State_Catalog.Models.User>
-@inject UserManager<User> userManager;
+﻿@model IEnumerable<Real_State_Catalog.Models.Offer>
 
 @{
-    ViewData["Title"] = "MENU User";
+    ViewData["Title"] = "MENU Offer";
 }
 
 <div class="card main-card">
@@ -15,7 +11,7 @@
             <div class="row align-items-center">
 
                 <div class="col">
-                    <h2>User</h2>
+                    <h2>Offer</h2>
                 </div>
 
                 <div class="col-auto">
@@ -29,39 +25,59 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.FirstName)
+                        @Html.DisplayNameFor(model => model.Accommodation)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.LastName)
+                        @Html.DisplayNameFor(model => model.AddingDateTime)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Email)
+                        @Html.DisplayNameFor(model => model.StartAvailability)
                     </th>
                     <th>
-                        Role
+                        @Html.DisplayNameFor(model => model.EndAvailability)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PricePerNight)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CleaningFee)
                     </th>
                     <th style="text-align: right; padding-right: 1em;">
                         Actions
                     </th>
                 </tr>
             </thead>
+
             <tbody id="resultTable">
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.FirstName)
+                            <a asp-controller="Accommodation" asp-action="Details" asp-route-id="@item.Accommodation.Id" class="text-dark">
+                                @Html.DisplayFor(modelItem => item.Accommodation.Name)
+                            </a>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.LastName)
+                            @Html.DisplayFor(modelItem => item.AddingDateTime)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Email)
+                            @Html.DisplayFor(modelItem => item.StartAvailability)
                         </td>
                         <td>
-                            @Html.Raw((await userManager.GetRolesAsync(item)).FirstOrDefault())
+                            @Html.DisplayFor(modelItem => item.EndAvailability)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PricePerNight) €
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CleaningFee) €
                         </td>
                         <td style="text-align:right; padding-right:1em;">
+                            <form asp-action="View" asp-route-id="@item.Id" method="get" style="display: inline-block;">
+                                <button style="background: none; padding: 0px; border: none;" type="submit">
+                                    <i class="bi bi-journal-richtext" style="color:limegreen; padding-right:1em;"></i>
+                                </button>
+                            </form>
 
                             <form asp-action="Details" asp-route-id="@item.Id" method="get" style="display: inline-block;">
                                 <button style="background: none; padding: 0px; border: none;" type="submit">
@@ -86,6 +102,16 @@
                 }
             </tbody>
         </table>
+
+        <div>
+            <div style="float: left;">
+                <form asp-action="Create" method="get" style="display: inline-block;">
+                    <button class="btn btn-success" type="submit">
+                        <span class="bi bi-plus"></span> To add
+                    </button>
+                </form>
+            </div>
+        </div>
+
     </div>
 </div>
-
