@@ -161,11 +161,9 @@ namespace Real_State_Catalog.Migrations
 
             modelBuilder.Entity("Real_State_Catalog.Models.Accommodation", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -195,8 +193,8 @@ namespace Real_State_Catalog.Migrations
 
             modelBuilder.Entity("Real_State_Catalog.Models.Address", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -225,17 +223,15 @@ namespace Real_State_Catalog.Migrations
 
             modelBuilder.Entity("Real_State_Catalog.Models.Amenity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("AmenityType")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("RoomId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -246,11 +242,9 @@ namespace Real_State_Catalog.Migrations
 
             modelBuilder.Entity("Real_State_Catalog.Models.Booking", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ArrivalDate")
                         .HasColumnType("datetime2");
@@ -270,8 +264,8 @@ namespace Real_State_Catalog.Migrations
                     b.Property<int>("NbPerson")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OfferId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("OfferId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("TotalPrice")
                         .HasColumnType("float");
@@ -291,15 +285,13 @@ namespace Real_State_Catalog.Migrations
 
             modelBuilder.Entity("Real_State_Catalog.Models.Bookmark", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("OfferId")
+                    b.Property<Guid?>("OfferId")
                         .IsRequired()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -315,8 +307,8 @@ namespace Real_State_Catalog.Migrations
 
             modelBuilder.Entity("Real_State_Catalog.Models.HouseRules", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<TimeSpan>("ArrivalHour")
                         .HasColumnType("time");
@@ -340,14 +332,12 @@ namespace Real_State_Catalog.Migrations
 
             modelBuilder.Entity("Real_State_Catalog.Models.Offer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AccommodationId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("AccommodationId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddingDateTime")
                         .HasColumnType("datetime2");
@@ -373,14 +363,12 @@ namespace Real_State_Catalog.Migrations
 
             modelBuilder.Entity("Real_State_Catalog.Models.Picture", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AccommodationId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("AccommodationId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FileName")
                         .IsRequired()
@@ -395,14 +383,12 @@ namespace Real_State_Catalog.Migrations
 
             modelBuilder.Entity("Real_State_Catalog.Models.Room", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AccommodationId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("AccommodationId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("RoomType")
                         .HasColumnType("int");

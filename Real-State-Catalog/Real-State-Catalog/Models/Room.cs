@@ -12,9 +12,9 @@ namespace Real_State_Catalog.Models
     public class Room
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
-        public int AccommodationId { get; set; }
+        public Guid AccommodationId { get; set; }
 
         public RoomTypes RoomType { get; set; }
 

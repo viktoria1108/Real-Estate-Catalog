@@ -1,4 +1,19 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// Script for simple search in CRUDs
+$(document).ready(function () {
+	$("#searchInput").on("keyup", function () {
+		var value = $(this).val().toLowerCase();
+		$("#resultTable tr").filter(function () {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+});	
 
-// Write your JavaScript code.
+
+// Auto upload picture(s) when selected (for ManagePictures.cshtml)
+$(document).ready(function () {
+	$("#uploadPictures").on("change", function () {
+		$("#uploadPicturesForm").submit();
+	});
+
+	$("#uploadPicturesBtn").hide();
+});

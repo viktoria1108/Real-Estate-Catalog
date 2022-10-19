@@ -6,11 +6,11 @@ namespace Real_State_Catalog.Models
     public class Bookmark
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string? UserId { get; set; }
 
-        public int? OfferId { get; set; }
+        public Guid? OfferId { get; set; }
         [ForeignKey("OfferId")]
         public virtual Offer Offer { get; set; }
     }

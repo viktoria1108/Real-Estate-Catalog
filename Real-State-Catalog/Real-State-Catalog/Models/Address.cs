@@ -12,7 +12,7 @@ namespace Real_State_Catalog.Models
     {
 		[Key]
 		[ForeignKey("Accommodation")]
-		public int Id { get; set; }
+		public Guid Id { get; set; }
 
 		[JsonIgnore] 
 		public virtual Accommodation Accommodation { get; set; }

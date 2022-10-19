@@ -58,31 +58,6 @@
                             <h3>@Model.Accommodation.Name</h3>
                         </div>
 
-                        <div class="col-auto">
-                            @if (ViewBag.Bookmark != null)
-                            {
-                                if (!ViewBag.Bookmark)
-                                {
-                                    <form asp-action="AddBookmark" style="display: inline-block;">
-                                        <input type="hidden" asp-for="@Model.Id" />
-
-                                        <button style="background: none; padding: 0px; border: none;" type="submit">
-                                            <h3><i class="bi bi-bookmark-plus" style="color:black;"></i></h3>
-                                        </button>
-                                    </form>
-                                }
-                                else
-                                {
-                                    <form asp-action="DeleteBookmark" style="display: inline-block;">
-                                        <input type="hidden" asp-for="@Model.Id" />
-
-                                        <button style="background: none; padding: 0px; border: none;" type="submit">
-                                            <h3><i class="bi bi-bookmark-x-fill" style="color:black;"></i></h3>
-                                        </button>
-                                    </form>
-                                }
-                            }
-                        </div>
                     </div>
 
                     <hr class="solid">
@@ -100,7 +75,7 @@
 
                         <div class="p-1">
                             <h5 style="display:inline;"><i class="bi bi-person" style="vertical-align: -1px;"></i></h5>
-                            <h6 style="display:inline;">@Model.Accommodation.MaxTraveler voyageur(s) maximum</h6>
+                            <h6 style="display:inline;">@Model.Accommodation.MaxTraveler travelers maximum</h6>
                         </div>
 
                         <div class="p-1">
@@ -111,7 +86,7 @@
 
                     <hr class="solid">
 
-                    <h4>Pièce(s) [@Model.Accommodation.Rooms.Count] :</h4>
+                    <h4>Rooms [@Model.Accommodation.Rooms.Count] :</h4>
 
                     @foreach (var item in Model.Accommodation.Rooms)
                     {
@@ -121,7 +96,6 @@
 
                                 <h5 class="card-title">
                                     <img src="~/svg/@iconSrc" alt="Room icon" height="20px" width="20px" style="vertical-align: -3px;" />
-                                    @TypeTranslate.ToFr(Enum.GetName(typeof(RoomTypes), item.RoomType))
                                 </h5>
 
                                 <p class="card-text">

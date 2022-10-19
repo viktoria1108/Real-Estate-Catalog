@@ -25,8 +25,8 @@ namespace Real_State_Catalog.Views.Accommodation
         }
 
         // GET: Accommodation/ManagePictures
-        [Route("ManagePictures/{id:int?}")]
-        public async Task<IActionResult> ManagePictures(int? id)
+        [Route("ManagePictures/{id:guid?}")]
+        public async Task<IActionResult> ManagePictures(Guid? id)
         {
             if (id == null)
             {
@@ -60,9 +60,9 @@ namespace Real_State_Catalog.Views.Accommodation
 
         // POST: Accommodation/ManagePictures
         [HttpPost]
-        [Route("ManagePictures/{id:int?}")]
+        [Route("ManagePictures/{id:guid?}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ManagePictures(int? id, List<IFormFile> files)
+        public async Task<IActionResult> ManagePictures(Guid? id, List<IFormFile> files)
         {
             if (id == null)
             {
@@ -73,7 +73,7 @@ namespace Real_State_Catalog.Views.Accommodation
 
             foreach (var formFile in files)
             {
-                if (await _context.Pictures.CountAsync(p => p.AccommodationId == (int)id) == 12)
+                if (await _context.Pictures.CountAsync(p => p.AccommodationId == (Guid)id) == 12)
                 {
                     TempData["AlertType"] = "Warning";
                     TempData["AlertMsg"] = "You have reached the maximum number of photos! One or more photos could not be added.";
@@ -91,7 +91,7 @@ namespace Real_State_Catalog.Views.Accommodation
                     using var stream = System.IO.File.Create(filePath);
                     await formFile.CopyToAsync(stream);
 
-                    await _context.Pictures.AddAsync(new Picture((int)id, fileName));
+                    await _context.Pictures.AddAsync(new Picture((Guid)id, fileName));
                     await _context.SaveChangesAsync();
                 }
             }
@@ -100,8 +100,8 @@ namespace Real_State_Catalog.Views.Accommodation
         }
 
         // GET: Accommodation/DeletePicture
-        [Route("DeletePicture/{id:int}")]
-        public async Task<IActionResult> DeletePicture(int id, int accommodationId)
+        [Route("DeletePicture/{id:guid}")]
+        public async Task<IActionResult> DeletePicture(Guid id, Guid accommodationId)
         {
             //Перевірка чи є у користувача фото
             var picture = await _context.Pictures.FindAsync(id);

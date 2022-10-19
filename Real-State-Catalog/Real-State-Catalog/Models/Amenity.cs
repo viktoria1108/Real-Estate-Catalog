@@ -19,9 +19,9 @@ namespace Real_State_Catalog.Models
     public class Amenity
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
-        public int RoomId { get; set; }
+        public Guid RoomId { get; set; }
 
         public AmenityTypes AmenityType { get; set; }
 

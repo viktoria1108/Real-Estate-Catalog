@@ -64,7 +64,7 @@ namespace Real_State_Catalog.Controllers
         // POST: Booking/Details
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Details(int id, string returnAction)
+        public async Task<IActionResult> Details(Guid id, string returnAction)
         {
             var booking = await _context.Booking
                 .Include(b => b.Offer)
@@ -95,9 +95,8 @@ namespace Real_State_Catalog.Controllers
                 double cleaningFee = await _context.Offers.Where(o => o.Id == booking.OfferId).Select(o => o.CleaningFee).SingleOrDefaultAsync();
 
                 User senderUser = await _userManager.GetUserAsync(User);
-                User receiverUser = await _context.Offers.Where(o => o.Id == booking.OfferId).Select(o => o.Accommodation.User).SingleOrDefaultAsync();               
+                User? receiverUser = await _context.Offers.Where(o => o.Id == booking.OfferId).Select(o => o.Accommodation.User).SingleOrDefaultAsync();                           
             }
-
             return RedirectToAction(nameof(Index));
         }
     }

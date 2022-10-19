@@ -17,7 +17,7 @@ namespace Real_State_Catalog.Controllers
             _userId = userId;
         }
 
-        public async Task Add(int offerId)
+        public async Task Add(Guid offerId)
         {
             // Перевірте, чи вже існує закладка для підключеного користувача
             if (BookmarkExists(offerId) == null)
@@ -31,7 +31,7 @@ namespace Real_State_Catalog.Controllers
             }
         }
 
-        public async Task Delete(int? offerId)
+        public async Task Delete(Guid offerId)
         {
             var bookmark = BookmarkExists(offerId);
 
@@ -44,7 +44,7 @@ namespace Real_State_Catalog.Controllers
 
         // Перевірка, чи вже існує закладка для фактично підключеного користувача
         // Повернути закладку, якщо вона існує
-        private Bookmark BookmarkExists(int? offerId)
+        private Bookmark BookmarkExists(Guid offerId)
         {
             return _context.Bookmark.Where(b => b.OfferId == offerId && b.UserId == _userId).SingleOrDefault();
         }

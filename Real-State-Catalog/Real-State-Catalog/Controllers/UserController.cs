@@ -16,8 +16,6 @@ namespace Real_State_Catalog.Controllers
 
         public UserController(AppContextDB context, UserManager<User> userManager)
         {
-
-
             _context = context;
             _userManager = userManager;
         }

@@ -10,9 +10,9 @@ namespace Real_State_Catalog.Models
     {
         [Key]
         
-        public int? Id { get; set; }
+        public Guid? Id { get; set; }
 
-        public int? OfferId { get; set; }
+        public Guid? OfferId { get; set; }
 
         [Display(Name = "Offer")]
         public virtual Offer Offer { get; set; }

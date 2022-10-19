@@ -41,7 +41,7 @@ namespace Real_State_Catalog.Controllers
         }
 
         // GET: Offer/Details
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
@@ -84,18 +84,18 @@ namespace Real_State_Catalog.Controllers
         public async Task<IActionResult> Create(
             [Bind("AccommodationId, StartAvailability, EndAvailability, PricePerNight, CleaningFee")] Offer offer)
         {
-            if (ModelState.IsValid)
-            {
+            /*if (ModelState.IsValid)
+            {}*/
                 _context.Add(offer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+            
             ViewData["AccommodationId"] = new SelectList(_context.Accommodations, "Id", "Id", offer.AccommodationId);
             return View(offer);
         }
 
         // GET: Offer/Edit
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null) { return NotFound(); }
 
@@ -109,7 +109,7 @@ namespace Real_State_Catalog.Controllers
         // POST: Offer/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int? id,
+        public async Task<IActionResult> Edit(Guid? id,
             [Bind("Id, AccommodationId, StartAvailability, EndAvailability, PricePerNight, CleaningFee")] Offer offer)
         {
             if (id != offer.Id)
@@ -145,7 +145,7 @@ namespace Real_State_Catalog.Controllers
         }
 
         // GET: Offer/Delete
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -166,7 +166,7 @@ namespace Real_State_Catalog.Controllers
         // POST: Offer/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
+        public async Task<IActionResult> DeleteConfirmed(Guid? id)
         {
             var offer = await _context.Offers.FindAsync(id);
             _context.Offers.Remove(offer);
@@ -174,14 +174,14 @@ namespace Real_State_Catalog.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool OfferExists(int id)
+        private bool OfferExists(Guid id)
         {
             return _context.Offers.Any(e => e.Id == id);
         }
 
         // GET: Offer/View
         [AllowAnonymous]
-        public async Task<IActionResult> View(int? id)
+        public async Task<IActionResult> View(Guid? id)
         {
             if (id == null)
             {
@@ -222,7 +222,7 @@ namespace Real_State_Catalog.Controllers
             return View(offer);
         }
 
-        public async Task<IActionResult> AddBookmark(int id)
+        public async Task<IActionResult> AddBookmark(Guid id)
         {
             await new BookmarkController(_context, _userManager.GetUserId(User)).Add(id);
 
@@ -232,7 +232,7 @@ namespace Real_State_Catalog.Controllers
             return RedirectToAction("View", new { id });
         }
 
-        public async Task<IActionResult> DeleteBookmark(int id)
+        public async Task<IActionResult> DeleteBookmark(Guid id)
         {
             await new BookmarkController(_context, _userManager.GetUserId(User)).Delete(id);
 
@@ -242,7 +242,7 @@ namespace Real_State_Catalog.Controllers
             return RedirectToAction("View", new { id });
         }
 
-        private bool BookmarkExist(int offerId, string userId)
+        private bool BookmarkExist(Guid offerId, string userId)
         {
             return _context.Bookmark.Any(b => b.OfferId == offerId && b.UserId == userId);
         }

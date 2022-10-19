@@ -5,9 +5,9 @@ namespace Real_State_Catalog.Models
     public class Offer
     {
 		[Key]
-		public int Id { get; set; }
+		public Guid Id { get; set; }
 
-		public int AccommodationId { get; set; }
+		public Guid AccommodationId { get; set; }
 		[Display(Name = "Lodging")]
 		public virtual Accommodation Accommodation { get; set; }
 

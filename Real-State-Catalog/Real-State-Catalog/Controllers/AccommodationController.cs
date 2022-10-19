@@ -42,7 +42,7 @@ namespace Real_State_Catalog.Controllers
             }
 
             // GET: Accommodation/Details
-            public async Task<IActionResult> Details(int? id)
+            public async Task<IActionResult> Details(Guid? id)
             {
                 if (id == null)
                 {
@@ -81,7 +81,7 @@ namespace Real_State_Catalog.Controllers
                 [Bind("StreetAndNumber, Complement, City, PostalCode, Country")] Address address,
                 [Bind("ArrivalHour, DepartureHour, PetAllowed, PartyAllowed, SmokeAllowed")] HouseRules houseRules)
             {
-                if (!ModelState.IsValid) { return View(accommodation); }
+                //if (!ModelState.IsValid) { return View(accommodation); }
 
                 accommodation.UserId = (await _userManager.GetUserAsync(User)).Id;
                 accommodation.Address = address;
@@ -94,7 +94,7 @@ namespace Real_State_Catalog.Controllers
             }
 
             // GET: Accommodation/Edit
-            public async Task<IActionResult> Edit(int? id)
+            public async Task<IActionResult> Edit(Guid? id)
             {
                 if (id == null)
                 {
@@ -118,7 +118,7 @@ namespace Real_State_Catalog.Controllers
             // POST: Accommodation/Edit
             [HttpPost]
             [ValidateAntiForgeryToken]
-            public async Task<IActionResult> Edit(int id,
+            public async Task<IActionResult> Edit(Guid id,
                 [Bind("Id, Name, Type, MaxTraveler, Description")] Accommodation accommodation,
                 [Bind("Id, StreetAndNumber, Complement, City, PostalCode, Country")] Address address,
                 [Bind("Id, ArrivalHour, DepartureHour, PetAllowed, PartyAllowed, SmokeAllowed")] HouseRules houseRules)
@@ -151,7 +151,7 @@ namespace Real_State_Catalog.Controllers
             }
 
             // GET: Accommodation/Delete
-            public async Task<IActionResult> Delete(int? id)
+            public async Task<IActionResult> Delete(Guid? id)
             {
                 if (id == null)
                 {
@@ -171,7 +171,7 @@ namespace Real_State_Catalog.Controllers
             // POST: Accommodation/Delete
             [HttpPost, ActionName("Delete")]
             [ValidateAntiForgeryToken]
-            public async Task<IActionResult> DeleteConfirmed(int id)
+            public async Task<IActionResult> DeleteConfirmed(Guid id)
             {
                 var accommodation = await _context.Accommodations.FindAsync(id);
                 _context.Accommodations.Remove(accommodation);
@@ -179,7 +179,7 @@ namespace Real_State_Catalog.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            private bool AccommodationExists(int id)
+            private bool AccommodationExists(Guid id)
             {
                 return _context.Accommodations.Any(e => e.Id == id);
             }
