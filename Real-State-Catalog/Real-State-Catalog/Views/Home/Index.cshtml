@@ -1,8 +1,92 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Real_State_Catalog.Models.Offer>
+
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        @if (ViewBag.Search == null)
+        {
+            <h2>Last published offers</h2>
+        }
+        else
+        {
+            <h2>Offers corresponding to your search</h2>
+        }
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="margin-top: 1em;">
+
+            @if (Model != null)
+            {
+                int offerNb = 0;
+
+                foreach (var item in Model)
+                {
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div id="carousel-offer-@offerNb" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    @for (int i = 0; i < item.Accommodation.Pictures.Count; i++)
+                                    {
+                                        <button type="button" data-bs-target="#carousel-offer-@offerNb" data-bs-slide-to="@i"
+                                                @if (i == 0) { @: class="active" aria-current="true"
+                                                } aria-label="Slide @i"></button>
+                                    }
+                                </div>
+
+                                <div class="carousel-inner">
+                                    @{ var firstImg = true;
+                                        foreach (Picture picture in item.Accommodation.Pictures)
+                                        {
+                                            <div class="carousel-item @if (firstImg) {
+                                            @:active
+                                            firstImg = false; }">
+                                                <img src="~/upload/@picture.FileName" class="d-block w-100 card-img-top" style="object-fit: cover; width: 100%; height: 15em;" alt="">
+                                            </div>
+                                        }
+                                    }
+                                </div>
+
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-offer-@offerNb" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-offer-@offerNb" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <a asp-controller="Offer" asp-action="View" asp-route-id="@item.Id.ToString()" style="color: black; text-decoration: none;">
+                                    <h4 class="mb-1">@item.Accommodation.Address.ShortAddress()</h4>
+                                </a>
+
+                                <p class="card-text">
+                                    Submitted by
+                                    @Html.DisplayFor(modelItem => item.Accommodation.User.FirstName) @Html.DisplayFor(modelItem => item.Accommodation.User.LastName)
+                                </p>
+
+                                <p>Available from @Html.DisplayFor(modelItem => item.StartAvailability) to @Html.DisplayFor(modelItem => item.EndAvailability)</p>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a asp-controller="Offer" asp-action="View" asp-route-id="@item.Id.ToString()" class="btn btn-sm btn-outline-secondary">
+                                            See the offer
+                                        </a>
+                                    </div>
+
+                                    <small class="text-success" style="font-weight: bold;">@Html.DisplayFor(modelItem => item.PricePerNight) €/Night</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    offerNb++;
+                }
+            }
+        </div>
+    </div>
 </div>
