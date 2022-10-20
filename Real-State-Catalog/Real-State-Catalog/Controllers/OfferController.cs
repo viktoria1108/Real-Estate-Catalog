@@ -117,8 +117,8 @@ namespace Real_State_Catalog.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 // Get offer's adding date
                 offer.AddingDateTime = await _context.Offers.Where(o => o.Id == id).Select(o => o.AddingDateTime).SingleOrDefaultAsync();
 
@@ -139,7 +139,7 @@ namespace Real_State_Catalog.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            //}
             ViewData["AccommodationId"] = new SelectList(_context.Accommodations, "Id", "Id", offer.AccommodationId);
             return View(offer);
         }
@@ -227,7 +227,7 @@ namespace Real_State_Catalog.Controllers
             await new BookmarkController(_context, _userManager.GetUserId(User)).Add(id);
 
             TempData["AlertType"] = "success";
-            TempData["AlertMsg"] = "Offer successfully added to favorites ! <a href=\"/Identity/Account/Manage/Bookmark\">Access your favorites</a>";
+            TempData["AlertMsg"] = "Offer successfully added to favorites !";
 
             return RedirectToAction("View", new { id });
         }
@@ -237,7 +237,7 @@ namespace Real_State_Catalog.Controllers
             await new BookmarkController(_context, _userManager.GetUserId(User)).Delete(id);
 
             TempData["AlertType"] = "warning";
-            TempData["AlertMsg"] = "Deal successfully removed from favorites ! <a href=\"/Identity/Account/Manage/Bookmark\">Access your favorites</a>";
+            TempData["AlertMsg"] = "Deal successfully removed from favorites !";
 
             return RedirectToAction("View", new { id });
         }

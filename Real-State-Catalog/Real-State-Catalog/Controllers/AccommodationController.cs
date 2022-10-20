@@ -128,7 +128,7 @@ namespace Real_State_Catalog.Controllers
                     return NotFound();
                 }
 
-                if (!ModelState.IsValid) { return View(accommodation); }
+                //if (!ModelState.IsValid) { return View(accommodation); }
                 accommodation.UserId = await _context.Accommodations.Where(a => a.Id == id).Select(a => a.UserId).SingleOrDefaultAsync();
                 accommodation.Address = address;
                 accommodation.HouseRules = houseRules;

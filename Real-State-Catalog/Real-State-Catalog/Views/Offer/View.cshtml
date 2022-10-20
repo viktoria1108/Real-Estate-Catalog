@@ -57,6 +57,31 @@
                         <div class="col">
                             <h3>@Model.Accommodation.Name</h3>
                         </div>
+                         <div class="col-auto">
+                            @if (ViewBag.Bookmark != null)
+                            {
+                                if (!ViewBag.Bookmark)
+                                {
+                                    <form asp-action="AddBookmark" style="display: inline-block;">
+                                        <input type="hidden" asp-for="@Model.Id" />
+
+                                        <button style="background: none; padding: 0px; border: none;" type="submit">
+                                            <h3><i class="bi bi-bookmark-plus" style="color:black;"></i></h3>
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form asp-action="DeleteBookmark" style="display: inline-block;">
+                                        <input type="hidden" asp-for="@Model.Id" />
+
+                                        <button style="background: none; padding: 0px; border: none;" type="submit">
+                                            <h3><i class="bi bi-bookmark-x-fill" style="color:black;"></i></h3>
+                                        </button>
+                                    </form>
+                                }
+                            }
+                        </div>
 
                     </div>
 
@@ -146,12 +171,12 @@
                             <div class="d-grid gap-1">
                                 <div class="p-1">
                                     <h6 style="display:inline;"><i class="bi bi-cash"></i></h6>
-                                    <h6 style="display:inline;">Price per night : @Model.PricePerNight €</h6>
+                                    <h6 style="display:inline;">Price per night : @Model.PricePerNight $</h6>
                                 </div>
 
                                 <div class="p-1">
                                     <h6 style="display:inline;"><i class="bi bi-bucket"></i></h6>
-                                    <h6 style="display:inline;">Cleaning fee : @Model.CleaningFee €</h6>
+                                    <h6 style="display:inline;">Cleaning fee : @Model.CleaningFee $</h6>
                                 </div>
                             </div>
 
