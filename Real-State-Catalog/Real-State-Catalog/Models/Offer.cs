@@ -9,7 +9,7 @@ namespace Real_State_Catalog.Models
 
 		public Guid AccommodationId { get; set; }
 		[Display(Name = "Lodging")]
-		public virtual Accommodation Accommodation { get; set; }
+		public virtual Accommodation? Accommodation { get; set; }
 
 		[Display(Name = "Date Added")]
 		[DataType(DataType.DateTime)]

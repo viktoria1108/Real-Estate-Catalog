@@ -88,15 +88,21 @@ namespace Real_State_Catalog.Controllers
         public async Task<IActionResult> Create(
             [Bind("OfferId, ArrivalDate, ArrivalTime, DepartureDate, DepartureTime, NbPerson")] Booking booking)
         {
-            if (ModelState.IsValid)
-            {
+            /*if (ModelState.IsValid)
+            {*/
                 int nbNight = (booking.DepartureDate - booking.ArrivalDate).Days;
                 double pricePerNight = await _context.Offers.Where(o => o.Id == booking.OfferId).Select(o => o.PricePerNight).SingleOrDefaultAsync();
                 double cleaningFee = await _context.Offers.Where(o => o.Id == booking.OfferId).Select(o => o.CleaningFee).SingleOrDefaultAsync();
 
                 User senderUser = await _userManager.GetUserAsync(User);
-                User? receiverUser = await _context.Offers.Where(o => o.Id == booking.OfferId).Select(o => o.Accommodation.User).SingleOrDefaultAsync();                           
-            }
+                User? receiverUser = await _context.Offers.Where(o => o.Id == booking.OfferId).Select(o => o.Accommodation.User).SingleOrDefaultAsync();
+
+                double totalPrice = pricePerNight * (double)nbNight + cleaningFee;
+                booking.TotalPrice = totalPrice;
+                booking.UserId = (await _userManager.GetUserAsync(User)).Id;
+                _context.Add(booking);
+                await _context.SaveChangesAsync();
+            //}
             return RedirectToAction(nameof(Index));
         }
     }

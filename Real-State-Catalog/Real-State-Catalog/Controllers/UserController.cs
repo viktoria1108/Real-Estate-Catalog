@@ -31,16 +31,16 @@ namespace Real_State_Catalog.Controllers
         {
             [Required(ErrorMessage = "You must enter a first name")]
             [Display(Name = "First name")]
-            public string FirstName { get; set; }
+            public string? FirstName { get; set; }
 
             [Required(ErrorMessage = "You must enter a name")]
             [Display(Name = "Last name")]
-            public string LastName { get; set; }
+            public string? LastName { get; set; }
 
             [Required]
             [RegularExpression("User|Host|Admin", ErrorMessage = "Please select a valid role")]
             [Display(Name = "Role")]
-            public string Role { get; set; }
+            public string? Role { get; set; }
         }
 
         // GET: UserController

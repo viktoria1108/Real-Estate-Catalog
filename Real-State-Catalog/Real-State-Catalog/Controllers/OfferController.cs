@@ -117,8 +117,8 @@ namespace Real_State_Catalog.Controllers
                 return NotFound();
             }
 
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 // Get offer's adding date
                 offer.AddingDateTime = await _context.Offers.Where(o => o.Id == id).Select(o => o.AddingDateTime).SingleOrDefaultAsync();
 
@@ -139,7 +139,7 @@ namespace Real_State_Catalog.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            //}
+            }
             ViewData["AccommodationId"] = new SelectList(_context.Accommodations, "Id", "Id", offer.AccommodationId);
             return View(offer);
         }

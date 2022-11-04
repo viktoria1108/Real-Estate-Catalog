@@ -15,26 +15,26 @@ namespace Real_State_Catalog.Models
 		public Guid Id { get; set; }
 
 		[JsonIgnore] 
-		public virtual Accommodation Accommodation { get; set; }
+		public virtual Accommodation? Accommodation { get; set; }
 
 		[Required(ErrorMessage = "You must enter the number and street of your accommodation")]
 		[Display(Name = "Number and Street")]
-		public String StreetAndNumber { get; set; }
+		public String? StreetAndNumber { get; set; }
 
 		[Display(Name = "Address Complement")]
-		public String Complement { get; set; }
+		public String? Complement { get; set; }
 
 		[Required(ErrorMessage = "You must enter the postal code of your accommodation")]
 		[Display(Name = "Postcode")]
-		public String PostalCode { get; set; }
+		public String? PostalCode { get; set; }
 
 		[Required(ErrorMessage = "You must enter the city of your accommodation")]
 		[Display(Name = "City")]
-		public String City { get; set; }
+		public String? City { get; set; }
 
 		[Required(ErrorMessage = "You must enter the country of your accommodation")]
 		[Display(Name = "Country")]
-		public String Country { get; set; }
+		public String? Country { get; set; }
 
 		public override String ToString()
         {

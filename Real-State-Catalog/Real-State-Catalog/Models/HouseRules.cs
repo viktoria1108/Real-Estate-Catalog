@@ -9,7 +9,7 @@ namespace Real_State_Catalog.Models
         [ForeignKey("Accommodation")]
         public Guid Id { get; set; }
 
-        public virtual Accommodation Accommodation { get; set; }
+        public virtual Accommodation? Accommodation { get; set; }
 
         [Display(Name = "Minimum arrival time")]
         [Required(ErrorMessage = "You must indicate the minimum arrival time")]

@@ -81,7 +81,7 @@ namespace Real_State_Catalog.Controllers
                 [Bind("StreetAndNumber, Complement, City, PostalCode, Country")] Address address,
                 [Bind("ArrivalHour, DepartureHour, PetAllowed, PartyAllowed, SmokeAllowed")] HouseRules houseRules)
             {
-                //if (!ModelState.IsValid) { return View(accommodation); }
+                if (!ModelState.IsValid) { return View(accommodation); }
 
                 accommodation.UserId = (await _userManager.GetUserAsync(User)).Id;
                 accommodation.Address = address;

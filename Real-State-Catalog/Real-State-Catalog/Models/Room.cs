@@ -19,7 +19,7 @@ namespace Real_State_Catalog.Models
         public RoomTypes RoomType { get; set; }
 
         [Display(Name = "Equipement(s)")]
-        public virtual List<Amenity> Amenities { get; set; }
+        public virtual List<Amenity>? Amenities { get; set; }
 
         public string AmenitiesStr()
         {

@@ -12,6 +12,6 @@ namespace Real_State_Catalog.Models
 
         public Guid? OfferId { get; set; }
         [ForeignKey("OfferId")]
-        public virtual Offer Offer { get; set; }
+        public virtual Offer? Offer { get; set; }
     }
 }
